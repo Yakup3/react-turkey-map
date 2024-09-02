@@ -10,11 +10,19 @@ const App = () => {
   const [colorData, setColorData] = useState({});
   const [tooltipData, setTooltipData] = useState({});
 
+  const handleOnClick = (city, plate) => {
+    console.log(`City: ${city}, Plate: ${plate}`);
+  };
+
   return (
     <div css={styles.wrapper}>
       <Buttons setColorData={setColorData} setTooltipData={setTooltipData} />
 
-      <MapComponent colorData={colorData} tooltipData={tooltipData} />
+      <MapComponent
+        colorData={colorData}
+        tooltipData={tooltipData}
+        onClick={handleOnClick}
+      />
     </div>
   );
 };

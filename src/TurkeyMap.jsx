@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import { useState } from "react";
 
 import cities from "./cities";
 import styles from "./styles";
@@ -8,10 +8,12 @@ export default ({
   colorData: _colorData,
   showTooltip: _showTooltip,
   tooltipData: _tooltipData,
+  onClick: _onClick,
 }) => {
   const colorData = _colorData || {};
   const showTooltip = _showTooltip !== undefined ? _showTooltip : true;
   const tooltipData = _tooltipData || {};
+  const onClick = _onClick;
 
   const [tooltip, setTooltip] = useState("");
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -43,7 +45,10 @@ export default ({
       const parent = event.target.parentNode;
       const city = parent.getAttribute("data-city");
       const plate = parent.getAttribute("data-plate");
-      console.log({ city, plate });
+
+      if (onClick) {
+        onClick(city, plate);
+      }
     }
   };
 
